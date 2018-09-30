@@ -47,11 +47,11 @@ void uniq (int fd, char *name)
 					
 					if(flagC==1)
 					{
-						printf(1,"%d --C-- %s\n",RepeatCount,strRepeat);
+						printf(1,"%d %s\n",RepeatCount,strRepeat);
 					}
 					else if(flagD==1 && RepeatCount>1 )
 					{
-						printf (1, "%s\n", RepeatCount,strRepeat);
+						printf (1, "%s\n",strRepeat);
 
 					}
 					else if(flagD==0 && flagC==0){
@@ -111,11 +111,11 @@ void uniq (int fd, char *name)
 		//Check if this is required
 		if(flagC==1)
 		{
-			printf(1,"%d flagC last line %s\n",RepeatCount,strRepeat);
+			printf(1,"%d %s\n",RepeatCount,strRepeat);
 		}
 		else if(flagD==1 && RepeatCount>1 )
 		{
-			printf (1, "%s\n", RepeatCount,new_string);
+			printf (1, "%s\n",new_string);
 
 		}
 		
