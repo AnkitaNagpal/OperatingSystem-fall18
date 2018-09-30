@@ -43,14 +43,14 @@ void uniq (int fd, char *name)
 				{
 					if(flagC==1)
 					{
-						printf(1,"%d flagC data %s\n",RepeatCount,strRepeat);
+						printf(1,"%d --C-- %s\n",RepeatCount,strRepeat);
 					}
 					else if(flagD==1 && RepeatCount>1 )
 					{
-						printf (1, "%d flagD data %s\n", RepeatCount,new_string);
+						printf (1, "%d ---flagD -- %s\n", RepeatCount,strRepeat);
 
 					}
-					else if(flagC==0 || flagD==0){
+					else if(flagD==0 && flagC==0){
 						printf (1, "%s\n", new_string);
 					}
 					  
@@ -107,11 +107,11 @@ void uniq (int fd, char *name)
 		//Check if this is required
 		if(flagC==1)
 		{
-			printf(1,"%d flagC last line %s\n",RepeatCount,strRepeat);
+			printf(1,"%d flagC last line %s\n",RepeatCount-1,strRepeat);
 		}
 		else if(flagD==1 && RepeatCount>1 )
 		{
-			printf (1, "%d flagD last line %s\n", RepeatCount,new_string);
+			printf (1, "%d flagD last line %s\n", RepeatCount-1,new_string);
 
 		}
 		
@@ -121,6 +121,7 @@ void uniq (int fd, char *name)
   {
     int fd,i;
     char *name;
+
     fd = 0;			
     name = "";			
 
@@ -131,7 +132,7 @@ void uniq (int fd, char *name)
     }
   else {
             for (i = 1; i < argc; i++) {
-                  if (atoi(argv[i]) == 0 && *argv[i] != '0' && *argv[i] != '-') {//executes if not a number
+                  if (atoi(argv[i]) == 0 && *argv[i] != '0' && *argv[i] != '-c') {//executes if not a number
                         if ((fd = open(argv[i], 0)) < 0) {
                         printf(1, "uniq: cannot open %s\n", argv[i]);
                         exit();
