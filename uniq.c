@@ -113,9 +113,10 @@ void uniq (int fd, char *name)
 		{
 			printf(1,"%d %s\n",RepeatCount,strRepeat);
 		}
-		else if(flagD==1 && RepeatCount>1 )
+		
+		if(flagD==1 && RepeatCount>1 )
 		{
-			printf (1, "%s\n",new_string);
+			printf (1, "%s\n",strRepeat);
 
 		}
 		
