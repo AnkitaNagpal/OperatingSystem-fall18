@@ -17,16 +17,15 @@ char toUpperCase (char input)
 
 void uniq (int fd, char *name)
 {
-  int i, n;			//n means the size of the chunk read, i keeps track of index of the chunk
-  int l, c;			// l means line number, c means character count in string
+  int i, n;			
+  int c;			
   char strRepeat[512] = "";
   char new_string[512] = "";
   int savedStrCounter = 0;
   int savedStrCounterEnd = 0;
   int printFlag = 1;
   int RepeatCount=1;
-  l = c = 0;
-  //int lines = 10;
+  c = 0;
 
   char string[512];
 
@@ -38,25 +37,27 @@ void uniq (int fd, char *name)
 		{
 
 		  if (buf[i] == '\n')
-			{
-				if(savedStrCounterEnd!=c)
+			{			
+				if(savedStrCounterEnd != c)
 				{
-					printFlag=0;
+					printFlag = 0;
 				}
 				if (printFlag == 0)
-				{
+				{	
+					
 					if(flagC==1)
 					{
 						printf(1,"%d --C-- %s\n",RepeatCount,strRepeat);
 					}
 					else if(flagD==1 && RepeatCount>1 )
 					{
-						printf (1, "%d ---flagD -- %s\n", RepeatCount,strRepeat);
+						printf (1, "%s\n", RepeatCount,strRepeat);
 
 					}
 					else if(flagD==0 && flagC==0){
 						printf (1, "%s\n", new_string);
 					}
+					if(flagC==2) flagC=1;
 					  
 					memset (strRepeat, 0, 512);
 					strcpy (strRepeat, new_string);
@@ -66,7 +67,6 @@ void uniq (int fd, char *name)
 				}else{
 					RepeatCount++;
 				}
-			  l++;		//Increment line upon new line char
 			
 				  memset (new_string, 0, 512);
 				  memset (string, 0, 512);
@@ -115,7 +115,7 @@ void uniq (int fd, char *name)
 		}
 		else if(flagD==1 && RepeatCount>1 )
 		{
-			printf (1, "%d flagD last line %s\n", RepeatCount,new_string);
+			printf (1, "%s\n", RepeatCount,new_string);
 
 		}
 		
@@ -151,7 +151,7 @@ void uniq (int fd, char *name)
 				  
 				
 				if(strcmp(argv[i],"-i")==0){
-					flagI=1;
+					flagI=2;
                   }
             }
            uniq(fd, name);
