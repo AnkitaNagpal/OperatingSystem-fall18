@@ -143,7 +143,7 @@ void uniq (int fd, char *name)
                         }
                   }
                   else  if(strcmp(argv[i], "-c")==0){
-					flagC=1;
+					flagC=2;
                   }
 				  else  if(strcmp(argv[i],"-d")==0){
 					flagD=1;
@@ -151,7 +151,7 @@ void uniq (int fd, char *name)
 				  
 				
 				if(strcmp(argv[i],"-i")==0){
-					flagI=2;
+					flagI=1;
                   }
             }
            uniq(fd, name);
