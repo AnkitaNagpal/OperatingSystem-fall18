@@ -39,6 +39,10 @@ void uniq (int fd, char *name)
 
 		  if (buf[i] == '\n')
 			{
+				if(savedStrCounterEnd!=c)
+				{
+					printFlag=0;
+				}
 				if (printFlag == 0)
 				{
 					if(flagC==1)
@@ -107,11 +111,11 @@ void uniq (int fd, char *name)
 		//Check if this is required
 		if(flagC==1)
 		{
-			printf(1,"%d flagC last line %s\n",RepeatCount-1,strRepeat);
+			printf(1,"%d flagC last line %s\n",RepeatCount,strRepeat);
 		}
 		else if(flagD==1 && RepeatCount>1 )
 		{
-			printf (1, "%d flagD last line %s\n", RepeatCount-1,new_string);
+			printf (1, "%d flagD last line %s\n", RepeatCount,new_string);
 
 		}
 		
@@ -132,7 +136,7 @@ void uniq (int fd, char *name)
     }
   else {
             for (i = 1; i < argc; i++) {
-                  if (atoi(argv[i]) == 0 && *argv[i] != '0' && *argv[i] != '-c') {//executes if not a number
+                  if (atoi(argv[i]) == 0 && *argv[i] != '0' && *argv[i] != '-') {//executes if not a number
                         if ((fd = open(argv[i], 0)) < 0) {
                         printf(1, "uniq: cannot open %s\n", argv[i]);
                         exit();
