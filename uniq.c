@@ -19,16 +19,16 @@ void uniq (int fd, char *name)
 {
   int i, n;			
   int c;			
-  char strRepeat[512] = "";
-  char new_string[512] = "";
+  char strRepeat[1024] = "";
+  char new_string[1024] = "";
   int savedStrCounter = 0;
   int savedStrCounterEnd = 0;
   int printFlag = 1;
   int RepeatCount=1;
-  int b, blankCounter;
+  int blankCounter;
   c = 0;
 
-  char string[512];
+  char string[1024];
 
 
   while ((n = read (fd, buf, sizeof (buf))) > 0)
@@ -43,15 +43,19 @@ void uniq (int fd, char *name)
 				if(buf[i-1]=='\n')
 				{
 					blankCounter=0;
+					if(i==0)
+					blankCounter=1;
+
+					
 					while(buf[i]=='\n')
 					{
-						blankCounter++
+						blankCounter++;
 						i++;
 					}
 					i--;
 					RepeatCount=blankCounter;
 					strcpy(strRepeat,"");
-					Strcpy(new_string,"");
+					strcpy(new_string,"");
 				}
 				if(savedStrCounterEnd != c || blankCounter>0)
 				{
