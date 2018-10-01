@@ -25,6 +25,7 @@ void uniq (int fd, char *name)
   int savedStrCounterEnd = 0;
   int printFlag = 1;
   int RepeatCount=1;
+  int b, blankCounter;
   c = 0;
 
   char string[512];
@@ -38,7 +39,21 @@ void uniq (int fd, char *name)
 
 		  if (buf[i] == '\n')
 			{			
-				if(savedStrCounterEnd != c)
+				
+				if(buf[i-1]=='\n')
+				{
+					blankCounter=0;
+					while(buf[i]=='\n')
+					{
+						blankCounter++
+						i++;
+					}
+					i--;
+					RepeatCount=blankCounter;
+					strcpy(strRepeat,"");
+					Strcpy(new_string,"");
+				}
+				if(savedStrCounterEnd != c || blankCounter>0)
 				{
 					printFlag = 0;
 				}
@@ -67,7 +82,7 @@ void uniq (int fd, char *name)
 				}else{
 					RepeatCount++;
 				}
-			
+				  blankCounter=0;
 				  memset (new_string, 0, 512);
 				  memset (string, 0, 512);
 				  savedStrCounterEnd = c;
