@@ -75,7 +75,7 @@ runcmd(struct cmd *cmd)
         fprintf(stderr, "open %s failed\n", rcmd->file);
         exit(0);}
 
-    dup(openvalue);
+    dup2(rcmd->fd,openvalue);
     runcmd(rcmd->cmd);
    // dup2(savestdin,rcmd->file);
     break;
@@ -83,7 +83,7 @@ runcmd(struct cmd *cmd)
   case '|':
     pcmd = (struct pipecmd*)cmd;
     if(pipe(p) < 0)
-         fprintf(stderr,"pipe\n");
+         fprintf(stderr, "pipe not implemented\n");
 
     //fprintf(stdout,"Pipe:%d,%d,%d,%d,%d",p[0],p[1],p[2],p[3],p[4]);
     //fprintf(stderr, "pipe not implemented\n");
